@@ -1,16 +1,29 @@
+#Import the required Libraries
 import wikipedia as wp
 from tkinter import *
 from tkinter import ttk
 
-nm = input('Enter The Name')
+#Create an instance of Tkinter frame
+win= Tk()
 
-name = nm.replace(' ','_')
+#Set the geometry of Tkinter frame
+win.geometry("750x250")
 
-result = wp.summary(name)
+def display_text():
+   global entry
+   string= entry.get()
+   label.configure(text=string)
 
-root = Tk()
-frm = ttk.Frame(root, padding=10)
-frm.grid()
-ttk.Label(frm, text="Hello World!").grid(column=0, row=0)
-ttk.Button(frm, text="Quit", command=root.destroy).grid(column=1, row=0)
-root.mainloop()
+#Initialize a Label to display the User Input
+label=Label(win, text="", font=("Courier 22 bold"))
+label.pack()
+
+#Create an Entry widget to accept User Input
+entry= Entry(win, width= 40)
+entry.focus_set()
+entry.pack()
+
+#Create a Button to validate Entry Widget
+ttk.Button(win, text= "Okay",width= 20, command= display_text).pack(pady=20)
+
+win.mainloop()
